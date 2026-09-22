@@ -1,0 +1,33 @@
+name: Test all layers
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements.lock
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: pip install -r requirements.lock
+      - run: pip install --no-deps -e .
+      - run: npm ci --prefix frontend
+      - run: docker info
+      - name: Unit, adapter, Pact, PostgreSQL, component, Behave, and React
+        run: python -m pytest -v --junitxml=test-results/results.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-and-pacts
+          path: |
+            test-results/
+            pacts/

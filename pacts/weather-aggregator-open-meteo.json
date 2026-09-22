@@ -1,0 +1,161 @@
+{
+  "consumer": {
+    "name": "weather-aggregator"
+  },
+  "interactions": [
+    {
+      "description": "fetch current conditions",
+      "pending": false,
+      "request": {
+        "method": "GET",
+        "path": "/v1/forecast",
+        "query": {
+          "current_weather": [
+            "true"
+          ],
+          "latitude": [
+            "45.75"
+          ],
+          "longitude": [
+            "21.23"
+          ],
+          "wind_speed_unit": [
+            "kmh"
+          ]
+        }
+      },
+      "response": {
+        "body": {
+          "content": {
+            "current_weather": {
+              "temperature": 22.4,
+              "weathercode": 3,
+              "windspeed": 14.2
+            }
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.current_weather.temperature": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "decimal"
+                }
+              ]
+            },
+            "$.current_weather.weathercode": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            },
+            "$.current_weather.windspeed": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "decimal"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "resolve a city",
+      "pending": false,
+      "request": {
+        "method": "GET",
+        "path": "/v1/search",
+        "query": {
+          "count": [
+            "1"
+          ],
+          "format": [
+            "json"
+          ],
+          "language": [
+            "en"
+          ],
+          "name": [
+            "timisoara"
+          ]
+        }
+      },
+      "response": {
+        "body": {
+          "content": {
+            "results": [
+              {
+                "latitude": 45.75,
+                "longitude": 21.23,
+                "name": "Timișoara"
+              }
+            ]
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.results[0].latitude": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "decimal"
+                }
+              ]
+            },
+            "$.results[0].longitude": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "decimal"
+                }
+              ]
+            },
+            "$.results[0].name": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "type": "Synchronous/HTTP"
+    }
+  ],
+  "metadata": {
+    "pactRust": {
+      "ffi": "0.5.8",
+      "models": "1.3.16"
+    },
+    "pactSpecification": {
+      "version": "4.0"
+    }
+  },
+  "provider": {
+    "name": "open-meteo"
+  }
+}
