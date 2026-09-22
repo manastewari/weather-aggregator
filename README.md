@@ -1,3 +1,5 @@
+# NOTE: Please ignore the watermark in the demo video as the demo video was compressed using  a online tool for uploading
+
 # Weather Aggregator
 
 FastAPI + React, with a framework-independent domain and explicit ports and adapters. Open-Meteo supplies current conditions; PostgreSQL persists each fetch. No API key is needed.
