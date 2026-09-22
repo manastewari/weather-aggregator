@@ -385,7 +385,7 @@ These branches show groups of checks, not parallel execution. The current tests 
 
 The verified PostgreSQL run on September 21, 2026 reported **34 passed, 3 warnings in 94.37 seconds**. The 34 pytest items include a wrapper that runs four BDD scenarios and another wrapper that runs four React tests plus a frontend build. They are not 34 separate browser tests. The warnings were two testing-library deprecations and a local pytest cache permission warning.
 
-**CI**, Continuous Integration, runs automated checks when code is pushed or changed. The project includes a GitHub Actions CI workflow. The workflow is prepared, but it has not run remotely because this repository has not yet been published to GitHub.
+**CI**, Continuous Integration, runs automated checks when code is pushed or changed. The project includes a GitHub Actions CI workflow. The private repository is published at https://github.com/manastewari/weather-aggregator. Each push starts the workflow; its result appears in the repository Actions tab.
 
 ## 12. Try the project yourself
 

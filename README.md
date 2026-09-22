@@ -125,7 +125,7 @@ Schema creation uses `create_all` for this small exercise; production schema cha
 
 ## Delivery
 
-GitHub Actions runs the single test command on Ubuntu with Docker and uploads JUnit output plus the Pact file. A private remote and reviewer invitations require the repository owner and confirmed GitHub usernames. Those were not supplied, so the project is prepared locally rather than published to an assumed account.
+GitHub Actions runs the single test command on Ubuntu with Docker and uploads JUnit output plus the Pact file. The project is published in the private repository https://github.com/manastewari/weather-aggregator. Reviewer invitations remain pending until their GitHub usernames are confirmed.
 
 Reviewers listed in the brief: lucian.timar@nokia.com, csilla.groza@nokia.com, daliborca.popov@nokia.com, diana.dorobantu@nokia.com. Confirm their GitHub accounts before inviting them. Do not make the repository public.
 
@@ -133,6 +133,6 @@ Reviewers listed in the brief: lucian.timar@nokia.com, csilla.groza@nokia.com, d
 
 On September 21, 2026, after installing Docker and restarting Windows, the combined command passed **34 pytest tests in 94.37 seconds with real PostgreSQL Testcontainers**, including the Behave runner (four scenarios), the React runner (four component tests), Pact consumer/provider verification, and the production UI build. `TEST_DATABASE_URL` was unset. The run reported three non-failing warnings: two test-library deprecations and a local pytest cache permission warning. Local output is saved in `test-results/postgres-output.txt` and JUnit results in `test-results/postgres.xml` (ignored by Git).
 
-`docker compose up --build -d` successfully built and started the UI, API, and PostgreSQL services. A manual request through the UI proxy at `http://localhost:8080` fetched live Bengaluru conditions from Open-Meteo, saved the reading, and retrieved it through the latest-reading endpoint. CI has been written but has not run on GitHub. `npm install` reported zero vulnerabilities after updating Vitest.
+`docker compose up --build -d` successfully built and started the UI, API, and PostgreSQL services. A manual request through the UI proxy at `http://localhost:8080` fetched live Bengaluru conditions from Open-Meteo, saved the reading, and retrieved it through the latest-reading endpoint. GitHub Actions starts automatically on each push; check the repository Actions tab for the latest result. `npm install` reported zero vulnerabilities after updating Vitest.
 
 For the service TDD cycle, `tests/test_service.py` was created and executed before `weather/service.py`; it first failed because the service module did not exist. Implementing the service made the service and HTTP-adapter batch pass (21 tests). The domain/service boundary remains free of framework, HTTP-client and database imports.
