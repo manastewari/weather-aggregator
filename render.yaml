@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: weather-aggregator
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile.hosted
+    healthCheckPath: /healthz
+    envVars:
+      - key: DATABASE_URL
+        sync: false
