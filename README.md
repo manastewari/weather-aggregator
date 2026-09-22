@@ -123,11 +123,6 @@ The HTTP adapter has a 10-second timeout per call and no automatic retries; the 
 
 Schema creation uses `create_all` for this small exercise; production schema changes need migrations. History is unpaginated per the brief. Authentication, rate limits, caching and background refresh are outside the exercise. The same-origin proxy avoids broad CORS configuration. The UI loads optional Google Fonts with system-font fallbacks.
 
-## Delivery
-
-GitHub Actions runs the single test command on Ubuntu with Docker and uploads JUnit output plus the Pact file. The project is published in the private repository https://github.com/manastewari/weather-aggregator. Reviewer invitations remain pending until their GitHub usernames are confirmed.
-
-Reviewers listed in the brief: lucian.timar@nokia.com, csilla.groza@nokia.com, daliborca.popov@nokia.com, diana.dorobantu@nokia.com. Confirm their GitHub accounts before inviting them. Do not make the repository public.
 
 ## Verification recorded in this workspace
 
