@@ -4,8 +4,6 @@
 
 FastAPI + React, with a framework-independent domain and explicit ports and adapters. Open-Meteo supplies current conditions; PostgreSQL persists each fetch. No API key is needed.
 
-New to the project? Read [the beginner's guide](README_BEGINNER_GUIDE.md) for the problem statement, requirements, architecture, complete flowcharts, and plain-language technical explanations.
-
 ## Run
 
 ### Windows Docker setup
